@@ -53,7 +53,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
      */
 
     /**
-     * TODO: Retrieve books by their availability using their available field. The return type will be List<Book>.
+     * TODO: Retrieve books by their availability using the field "available" in the class Book. The return type will be List<Book>.
      */
 
     /**
