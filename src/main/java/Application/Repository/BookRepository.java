@@ -7,6 +7,32 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
+ * NamedQueries are a powerful feature of JPA repositorties that allow a developer to create a query using naming
+ * conventions based on the name of fields in a class and the class name itself. For instance, if you have the 
+ * following class:
+ * public class Person {
+ *    Long id;
+ *    String name;
+ *    int age;
+ * }
+ *
+ * You can create a named query in a JpaRepository interface using the 'name' and 'age' fields.
+ * public interface PersonRepository extends JpaRepository<Person, Long> {
+ *    public Person findPersonByName(String name);
+ *    
+ *    public List<Person> findPersonsByAge(Integer age);
+ * }
+ *
+ * There are two important notes to keep in mind here. The return type and name of the method is important when
+ * using named queries. For the first method, we are locating a single person object, so the name is "FindPerson..."
+ * and the return type matches this expectation by returning a single Person object. We are locating this person
+ * using the field "Name", so the full method name: "findPersonByName" follows a naming convention that JpaRepository
+ * expects.
+ *
+ * For the second method, notice that the proper way to say we want to find multiple persons would be to name
+ * the method "FindPeopleByAge", however, the class is 'Person' not 'People'. The most important thing to keep in
+ * mind when working with named queries are to match the class and field names.
+ * 
  * In this JPA Repository interface, we will be exploring JPA's ability to infer queries from method names. We'll
  * refer to these as query methods. While JPA does allow the developer to include their own database queries, many
  * operations are simple enough that they can be adequately described using a specific method name.
